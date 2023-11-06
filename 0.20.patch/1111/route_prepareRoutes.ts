@@ -67,7 +67,7 @@ function prepareRoutes(
         },
         {
           name: 'nodes',
-          label: t('glossary|Nodes'),
+          label: t('glossary|Nodes'),          
         },
         {
           name: 'crds',
@@ -125,8 +125,8 @@ function prepareRoutes(
         },
         {
           name: 'persistentVolumes',
-          label: t('glossary|Storage Volumes'),
-          hide: !helpers.isClusterProfileAdmin(),
+          label: t('glossary|Storage Volumes'), 
+          hide: !helpers.isClusterProfileAdmin(),         
         },
         {
           name: 'persistentVolumeClaims',

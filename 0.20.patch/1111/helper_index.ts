@@ -367,37 +367,37 @@ function loadTableSettings(tableId: string): { id: string; show: boolean }[] {
   return settings;
 }
 
-function storeOptionClusterResources(cfg: string) {
+function storeOptionClusterResources(cfg: string){
   localStorage.setItem('option_show_cluster_resources', cfg);
 }
-function getOptionClusterResources() {
+function getOptionClusterResources(){
   const cfg = localStorage.getItem('option_show_cluster_resources');
   if (!cfg) {
     return 'DEFAULT';
-  }
+  } 
   return cfg;
 }
 function showAllClusterResources(): boolean {
-  if (getOptionClusterResources() === 'SHOW_ALL') {
+  if ( getOptionClusterResources() === 'SHOW_ALL' ) {
     return true;
   }
-  return false;
-}
-function storeClusterProfile(cfg: string) {
+  return false;  
+}  
+function storeClusterProfile(cfg: string){
   localStorage.setItem('option_cluster_profile', cfg);
 }
-function getClusterProfile() {
+function getClusterProfile(){
   const cfg = localStorage.getItem('option_cluster_profile');
   if (!cfg) {
     return 'DEFAULT';
-  }
+  } 
   return cfg;
 }
 function isClusterProfileAdmin(): boolean {
-  if (getClusterProfile() === 'CLUSTER_ADMIN') {
+  if ( getClusterProfile() === 'CLUSTER_ADMIN' ) {
     return true;
   }
-  return false;
+  return false;  
 }
 
 /**

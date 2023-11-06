@@ -19,11 +19,12 @@ import { DefaultHeaderAction } from '../../redux/actionButtonsSlice';
 import { LightTooltip, SectionBox, SimpleTable } from '../common';
 import Link from '../common/Link';
 import { LogViewer, LogViewerProps } from '../common/LogViewer';
-import { PodMetricsFromPrometheus as PodMetrics } from '../common/PodMetricsFromPrometheus';
 import { ConditionsSection, ContainersSection, DetailsGrid } from '../common/Resource';
 import AuthVisible from '../common/Resource/AuthVisible';
 import Terminal from '../common/Terminal';
 import { makePodStatusLabel } from './List';
+
+import { PodMetricsFromPrometheus as PodMetrics } from '../common/PodMetricsFromPrometheus';
 
 const useStyle = makeStyles(theme => ({
   containerFormControl: {
@@ -435,7 +436,7 @@ export default function PodDetails(props: PodDetailsProps) {
       extraSections={item =>
         item && [
           {
-            id: 'headlamp.pod-metrics',
+            id: 'headlamp.pod-metrics',            
             section: <PodMetrics item={item?.jsonData} />,
           },
           {

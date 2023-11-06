@@ -39,7 +39,8 @@ export default function CreateButton(props: CreateButtonProps) {
               apiVersion,
             });
           }
-          if (value.reason) msg = msg + '[' + value.reason + ']';
+          if (value.reason)
+            msg = msg + '[' + value.reason  + ']';          
           setErrorMessage(msg);
           setOpenDialog(true);
           throw msg;

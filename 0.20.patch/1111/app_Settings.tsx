@@ -1,9 +1,9 @@
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { Box, FormControl, MenuItem, Select } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import React, { ChangeEvent,useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import helpers from '../../../helpers';
+
 import LocaleSelect from '../../../i18n/LocaleSelect/LocaleSelect';
 import { setVersionDialogOpen } from '../../../redux/actions/actions';
 import { setAppSettings } from '../../../redux/configSlice';
@@ -13,6 +13,8 @@ import TimezoneSelect from '../../common/TimezoneSelect';
 import { useSettings } from './hook';
 import NumRowsInput from './NumRowsInput';
 import ThemeChangeButton from './ThemeChangeButton';
+
+import helpers from '../../../helpers';
 
 const CLUSTER_RESOURCES_DEFAULT = 'DEFAULT'; //hide not used resources
 const CLUSTER_RESOURCES_ALL = 'SHOW_ALL';
@@ -43,19 +45,18 @@ interface ProfileProps {
 
 export function SelectClusterResource({ option, onChange }: ClusterResourcesProps) {
   const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-    onChange(event.target.value as string);
-    helpers.storeOptionClusterResources(event.target.value as string);
+    onChange(event.target.value as string);    
+    helpers.storeOptionClusterResources(event.target.value as string);    
   };
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl>
+      <FormControl>        
         <Select
-          labelId="cluster-resources-label"
-          id="cluster-resources"
-          value={option}
-          label="clusterLabel"
-          onChange={handleChange}
-        >
+           labelId="cluster-resources-label"
+           id="cluster-resources"
+           value={option}
+           label="clusterLabel"
+           onChange={handleChange} >
           <MenuItem value={CLUSTER_RESOURCES_DEFAULT}>Ocultar Recursos Nao Usados</MenuItem>
           <MenuItem value={CLUSTER_RESOURCES_ALL}>Mostrar todos os Recursos</MenuItem>
         </Select>
@@ -66,19 +67,18 @@ export function SelectClusterResource({ option, onChange }: ClusterResourcesProp
 
 export function SelectProfile({ option, onChange }: ProfileProps) {
   const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-    onChange(event.target.value as string);
-    helpers.storeClusterProfile(event.target.value as string);
+    onChange(event.target.value as string);    
+    helpers.storeClusterProfile(event.target.value as string);    
   };
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl>
+      <FormControl>        
         <Select
-          labelId="profile-select-label"
-          id="profile-select"
-          value={option}
-          label="profileLabel"
-          onChange={handleChange}
-        >
+           labelId="profile-select-label"
+           id="profile-select"
+           value={option}
+           label="profileLabel"
+           onChange={handleChange} >          
           <MenuItem value={CLUSTER_PROFILE}>Admin</MenuItem>
           <MenuItem value={CLUSTER_PROFILE_DEFAULT}>Default</MenuItem>
         </Select>
@@ -87,6 +87,7 @@ export function SelectProfile({ option, onChange }: ProfileProps) {
   );
 }
 
+
 export default function Settings() {
   const classes = useStyles();
   const { t } = useTranslation(['settings', 'frequent']);
@@ -94,15 +95,13 @@ export default function Settings() {
   const storedTimezone = settingsObj.timezone;
   const storedRowsPerPageOptions = settingsObj.tableRowsPerPageOptions;
   //const storedProfile = settingsObj.profile;
-  const [clusterShowResources, setClusterShowResources] = useState<string>(
-    helpers.getOptionClusterResources
-  );
+  const [clusterShowResources, setClusterShowResources] = useState<string>(helpers.getOptionClusterResources);
   const [profile, setProfile] = useState<string>(helpers.getClusterProfile);
   const [selectedTimezone, setSelectedTimezone] = useState<string>(
     storedTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone
   );
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(
       setAppSettings({
@@ -167,8 +166,8 @@ export default function Settings() {
           {
             name: 'Resursos do Cluster',
             value: (
-              <SelectClusterResource
-                option={clusterShowResources}
+              <SelectClusterResource 
+                option={clusterShowResources} 
                 onChange={showResources => setClusterShowResources(showResources)}
               />
             ),
@@ -176,7 +175,10 @@ export default function Settings() {
           {
             name: 'Profile Default',
             value: (
-              <SelectProfile option={profile} onChange={newProfile => setProfile(newProfile)} />
+              <SelectProfile 
+                option={profile} 
+                onChange={newProfile => setProfile(newProfile)}
+              />
             ),
           },
         ]}
